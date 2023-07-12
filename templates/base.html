@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+{% include 'style.html' %}
+    <body>
+        <table>
+            <thead>
+            <p>Sale</p>
+                <tr>
+                    <th> <a class="btn" href="">Strona główna</a> </th>
+                    <th> <a class="btn" href="{% url 'matma' %}">Math</a> </th>
+                    <th> <a class="btn" href="">FAQ</a> </th>
+                    <th> <a class="btn" href="">Num1 </a> </th>
+                    <th><a class="btn" href="">Lista sali </a></th>
+                </tr>
+            </thead>
+</table>
+
+
+</form>
+{% block zawartosc %}
+{% endblock %}
+</body>
+</html>
