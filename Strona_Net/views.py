@@ -4,26 +4,21 @@ from django.views import View
 def home(request):
     return render(request,'base.html')
 
-def prime_prob(request):
+class PrimeView(View):
     def get(self,request):
         return render(request, 'primes.html')
     def post(self,request):
-        first_number = request.POST.get('first')
-        second_number = request.POST.get('second')
+        first_number = int(request.POST.get('first'))
+        second_number = int(request.POST.get('second'))
         check_prime = get_prime_numbers(first_number,second_number)
+        return render(request,'primeview.html',{'result':check_prime})
 
 
 
-class PrimeView(View):
 
 
 
-def calculate_trigonometric_functions(angle_in_radians):
-    sin_value = math.sin(angle_in_radians)
-    cos_value = math.cos(angle_in_radians)
-    tan_value = math.tan(angle_in_radians)
 
-    return sin_value, cos_value, tan_value
 
 def get_prime_numbers(start, end):
     prime_numbers = []

@@ -19,6 +19,6 @@ from django.urls import path
 from Strona_Net import views
 urlpatterns = [
     path('', views.home,name="home"),
-    path('matma',views.prime_prob,name='primes'),
+    path('matma',views.PrimeView.as_view(),name='primes'),
 
 ]
