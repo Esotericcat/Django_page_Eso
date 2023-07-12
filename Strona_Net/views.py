@@ -1,25 +1,30 @@
 from django.shortcuts import render
 import math
 from django.views import View
+
+
 def home(request):
-    return render(request,'base.html')
+    return render(request, 'base.html')
+
 
 class PrimeView(View):
-    def get(self,request):
+    def get(self, request):
         return render(request, 'primes.html')
-    def post(self,request):
+
+    def post(self, request):
         first_number = int(request.POST.get('first'))
         second_number = int(request.POST.get('second'))
-        check_prime = get_prime_numbers(first_number,second_number)
-        return render(request,'primeview.html',{'result':check_prime})
+        check_prime = get_prime_numbers(first_number, second_number)
+        vis = visualize_numbers(check_prime)
+
+        return render(request, 'primeview.html', {'result': vis})
 
 
 
-
-
-
-
-
+def visualize_numbers(numbers):
+    for number in numbers:
+        print("*" * number)
+# Create your views here.
 def get_prime_numbers(start, end):
     prime_numbers = []
 
@@ -35,4 +40,15 @@ def get_prime_numbers(start, end):
     return prime_numbers
 
 
-# Create your views here.
+def visualize_numbers(numbers, symbol='#'):
+    max_number = max(numbers)
+    num_digits = len(str(max_number))
+
+    visualizations = []
+    for i, number in enumerate(numbers, start=1):
+        label = f'Number {i}:'
+        bar = symbol * number
+        visualization = f'{label:<10} {bar:{symbol}<{max_number * num_digits}}'
+        visualizations.append(visualization)
+
+    return visualizations
